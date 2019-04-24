@@ -1,0 +1,121 @@
+# list all mounted volumes with labels
+sudo lsblk -o name,mountpoint,label,size,uuid
+
+
+
+
+vi(m):
+-------------------------------------------
+enter command mode: escape
+quit:  :quit :q :q! (quit and ignore changes)
+
+enter edit mode: i or a
+
+search:  / (forward)
+		? (back)
+
+	repeate/continue search: n
+	( use . for any char and * to repeat, example: pr.*ties finds properties)
+
+
+Replace all occurs of a string
+:%s/pattern/replace/
+
+move forward to line 50:
+50G
+
+	
+save: :x (saves and exits)
+exit: :q
+exit and revert unsaved changes: :q!
+
+
+remove dir (myDir) and all of its content
+----------------
+rm -rf myDir
+
+
+
+grep
+---------------------
+
+ignorecase: -i
+recursively: -r
+list only (not display rows): -l
+
+
+search recursively from current dir for a string, 
+grep -r -i 'somethingtosearchfor' ./
+
+exclude .svn dirs:
+grep -r -i 'somethingtosearchfor' ./ *|grep -v "\.svn/*"
+
+Pipe find to search recursively form current dir for a string in particular file type:
+find . -name '*.js' | xargs grep 'foobar'
+
+Exclude a certain file name pattern (webpack) in search for a string (foobar):
+grep -ril --exclude='*webpack*' 'foobar'
+
+
+cp
+---------------------------
+...TODO
+
+vim
+------
+search replace
+:%s/foo/bar/gc
+Change each 'foo' to 'bar', but ask for confirmation first.
+
+
+
+
+
+scp 
+---------------------
+
+From your system at home, you would use the "scp" shell command to connect to the class server via ssh and tell scp what file to copy. 
+
+ > scp server@<ip_of_server>:file newfile
+
+ To put a file onto the server,
+
+ > scp file server@<ip_of_server>:newfile
+
+examples
+copy file from remote machine home folder to local:
+scp svenbe@technxs.com:myfile ./
+copy commit hooks from  remote to home folder and specify name (unnecessary if you give path apparently, see above):
+scp svenbe@technxs.com:../../git/ag.git/hooks/post-update post-update
+
+
+ssh 
+-----------------------
+run with correct user according to:
+'config' file under home folder
+
+rsa key generation
+
+ssh-keygen, see pdf cheat sheet
+
+
+
+-------------------------
+Pipe find to sed: replace all occurrances of 'foo' with 'bar' in all '.php' files
+find . -name "*.php" -print | xargs sed -i 's/foo/bar/g'
+
+check first that you get the correct set with: 
+find . -name "*.php" -print
+
+
+chmod
+------------
+set read and write execute by owner, read and execute by anyone else on the file 'file.cgi':
+
+chmod 755 file.cgi
+
+Set the permission of file.txt to "read and write by everyone" (-rw-rw-rw-).
+
+chmod 666 file.txt
+
+... on some folder recursively:
