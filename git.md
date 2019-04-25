@@ -214,9 +214,9 @@ git diff HEAD~5:models.py models.py
 Use --- before file paht (note: with trailing blank as well) example:
 
 ```
-git diff 44cde6aeaf061e8cd69f2a2e8cc3b6729bd152f5 a6bdf8b767a13df801861a534fbfd25731d77e93 -- Source/com/portwise/core/statistics/tables/AccessHostTable.java
+git diff 44cde6aeaf061e8cd69f2a2e8cc3b6729bd152f5 a6bdf8b767a13df801861a534fbfd25731d77e93 -- <paht-to-file>/FileToDiff.java
 
-git log  -- Source/com/portwise/core/statistics/tables/AccessHostTable.java
+git log  -- <path-to-file>/FileToDiff.java
 ```
 
 
@@ -332,12 +332,13 @@ git remote prune origin
 
 ## Branch cleanup - removing stale branches
 
-This is the optimal housekeeping task, has to be reuglarly in big projects. 
+This is the epic housekeeping task, removing all junk branches from the remote repo.
+If you are responsible of the repo there is a good chanse that this is something that you have to do reuglarly in big projects.
+ 
 In the below workflow we use &lt;dev> as a example of a merge-to branch. Everyting that was merged to &lt;dev> can be removed.
 
 
-
-### Easiest concept to achieve a clean and up-to-date repo - do it in 3 or 4 steps:
+### Easiest workflow to achieve an up-to-date repo without lotsa junk - do it in 3 or 4 steps:
 
 
 #### (1) Locally remove branches that have been merged into branch &lt;dev>
@@ -383,9 +384,11 @@ git push origin :<my-feature-branch>
 ...or in batch by some clever scripting... (be careful not to remove the <dev> branch itself that is probably listed first)
 
 
-#### (4) as a fourth step you might want to check the remaining branches, 
+#### (4) Check the remaining branches
 
-Who 'owns' the remaining branches i.e. who are committing on them. What are the unique commits on them.
+As a fourth step you might want to check the remaining branches, check with your collegues if they are still active. 
+
+Check who 'owns' the remaining branches i.e. who are committing on them... What are the unique commits on them...?
 
 See section *Log all commits in &lt;feature-branch> that do not emanate from &lt;dev>*.
 
