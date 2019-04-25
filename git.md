@@ -1,8 +1,9 @@
 
 # Table of Contents
-1. [Basics/Misc](#Basics/Misc)
+1. [Basics/Misc](#Basics)
 
    1.1 [Branching, merging and commit control](#branching-merging-commit)
+
    1.2 [Initiation](#Initiation)
 
 2. [Inspection and diagnosing](#inspect-diagnose)
@@ -12,7 +13,7 @@
 
 
 
-# Basics/Misc
+# Basics
 
 
 ## Branching, merging and commit control<a name="branching-merging-commit" /> 
