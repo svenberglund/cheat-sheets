@@ -5,13 +5,13 @@
 ## Branching, merging and commit control
 
 
-### create new local feature branch (example):
+### Create new local feature branch (example):
 
 ```
 git checkout -b feature_myAwsomeFeature
 ```
 
-### create new local feature branch from specific branch (example): 
+### Create new local feature branch from specific branch (example): 
 
 ```
 git checkout -b feature_myAwsomeFeature teamDevelopBranch
@@ -24,7 +24,7 @@ however you have to do a set-upstream explicitly to connect the two branches (se
 ### Make sure to track from upstream branch (Set tracking of local branch that does not track properly from origin).
 
 (the default behaviour is to always push to remote branch with same name but then when you want to pull for the first time you normally get this error:
-* "you asked me to pull without telling me which branch ...."* 
+> "you asked me to pull without telling me which branch ...." 
 Can be resolved like this: 
 
 
@@ -48,7 +48,7 @@ git branch -u origin/bucket (if you are already in bucket-4 local branch)
 ```
 
 
-### add all (unstaged, modified, deleted) from current palace in workign tree path:
+### Add all (unstaged, modified, deleted) from current place in workign tree path:
 
 ```
 git add -A .
@@ -100,7 +100,7 @@ Done!
 
 
 
-### create patch from latest commmit (e.g. for mirgrating to other repo)
+### Create patch from latest commmit (e.g. for mirgrating to other repo)
 
 ```
 git show HEAD > feature_6010.patch
@@ -178,14 +178,14 @@ git rm -rf .
 
 
 
-## Log all commits in <feature-branch> that do not emanate from <dev>
+## Log all commits in *&lt;feature-branch>* that do not emanate from *&lt;dev>*
 
 ```
 git log <feature-branch> ^<dev> --no-merges
 ```
 
 
-## diff specific file with specific version (example: models.py)
+## Diff specific file with specific version (example: models.py)
 
 ```
 git diff HEAD~5:models.py models.py
@@ -220,7 +220,7 @@ git branch -a
 git remote -v
 ```
 
-like pull but will not imply merges:
+Like pull but will not imply merges:
 ```
 git fetch origin
 
@@ -234,11 +234,11 @@ TODO: explain the above
 Find branch only present in some submodule/subrepo.
 
 Run git submodule foreach (any bash command can be appended)
-then invoke branch list and grep to branch to search for:
+then invoke branch list and grep to branch to search for (in this case *needle-branch*):
 example:
 
 ```
-git submodule foreach 'git branch --all | grep -B 7 amas-4.10-master'
+git submodule foreach 'git branch --all | grep -B 7 needle-branch'
 ```
 
 
@@ -261,7 +261,7 @@ git push
 ```
 
 
-## merging
+## Merging
 
 ```
 git merge --no-ff feature-xx
@@ -286,7 +286,7 @@ git ls-files --others --exclude-standard
 ```
 
 
-## Remove all untracked files form working copy -------
+## Remove all untracked files form working copy
 
 ```
 git clean -fd
@@ -317,14 +317,14 @@ git remote prune origin
 ## Branch cleanup - removing stale branches
 
 This is the optimal housekeeping task, has to be reuglarly in big projects. 
-In the below workflow we use <dev> as a example of a merge-to branch. Everyting that was merged to <dev> can be removed.
+In the below workflow we use &lt;dev> as a example of a merge-to branch. Everyting that was merged to &lt;dev> can be removed.
 
 
 
 ### Easiest concept to achieve a clean and up-to-date repo - do it in 3 or 4 steps:
 
 
-#### (1) Locally remove branches that have been merged into branch <dev>
+#### (1) Locally remove branches that have been merged into branch &lt;dev>
 
 List
 
@@ -346,7 +346,7 @@ git fetch --prune
 ```
 
 
-#### (3) Take care of remote branches that have been merged into <dev>
+#### (3) Take care of remote branches that have been merged into &lt;dev>
 
 
 List (provided we have already removed the local ones this command outputs the remote ones)
@@ -371,7 +371,7 @@ git push origin :<my-feature-branch>
 
 Who 'owns' the remaining branches i.e. who are committing on them. What are the unique commits on them.
 
-See section *Log all commits in <feature-branch> that do not emanate from <dev>*.
+See section *Log all commits in &lt;feature-branch> that do not emanate from &lt;dev>*.
 
 
 
