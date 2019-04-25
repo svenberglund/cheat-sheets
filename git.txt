@@ -1,7 +1,262 @@
+
+# Basics/Misc
+
+
+## Branching, merging and commit control
+
+
+create new local feature branch example:
+-----------------------------------------------------
+git checkout -b working_sprint98_deleteUserInAdmin
+
+
+create branch from specific branch 
+-----------------------------------------------------
+git checkout -b feature-pdfReceipt idc-svt
+you can then do git push and it will be created at origin aswell 
+however you have to do a set-upstream explicitly to connect the two branches (see below)
+
+
+--- make sure to track from upstream branch ---
+(the default behaviour is to always push to remote branch with same name but sometimes when you want to pull for the first time you get funny error:
+"you asked me to pull without telling me which branch ...." 
+Can be resolved like this: 
+
+
+the old syntax:
+git branch --set-upstream bucket-4 origin/bucket-4
+The --set-upstream flag is deprecated and will be removed. Consider using --track or --set-upstream-to
+
+from git 1.8git 
+git branch -u origin/bucket bucket
+or just
+git branch -u origin/bucket (if you are already in bucket local branch)
+
+
+
+add all (unstaged, modified, deleted) from current palace in workign tree path:
+-----------------------------------------------------
+git add -A .
+
+
+---------- set tracking of local branch that does not track properly from origin:-----
+
+from git 1.8:
+ git branch -u upstream/foo foo
+old syntax:
+ git branch --set-upstream amas-4.9-master origin/amas-4.9-master
+
+
+
+
+
+------------------------------- Unstage added files -------------------------------
+-------------- remove file from version control without removing it locally -------
+git rm --cached <filename>
+
+ex: all files in Debug folder
+git rm --cached **/Debug/*
+ex: all .cache files
+git rm --cached *.cache
+
+
+
+------------ Delete and retrack -------
+DELETE and RETRACK local branch, ex develop:
+
+$ git branch -D develop
+$ git pull
+$ git checkout -t origin/develop
+
+
+
+
+--- delete remote branch 'origin/myBranch'-------
+
+# first delete it locally if you have one:
+git branch -D myBranch
+
+# then this weird syntax says: take nothing on my side and make it origin/myBranch
+
+git push origin :myBranch
+
+# done!
+
+
+
+------------  create patch from latest commmit (e.g. for mirgrating to other repo) ------
+
+git show HEAD > 6010_core-controller.patch
+
+
+
+---- workflow to rebase feature branch: ---
+switch to base branch (i.e. ag-sprint-98)
+git checkout ag-sprint-98
+git pull
+git chekout <myfeaturebranch>
+git rebase ag-sprint-98
+
+
+
+
+----------------- merging ----------------------
+
+git merge --no-ff release-x.x
+use the --no-commit flag to disable autocommit if you want to do some special tweaks(like some row you don't want to merge)
+
+todo merge --squash (difference with --no-ff )
+
+
+
+
+
+## Initiation
+
+Create local repo from non empty dir 
+----------------------------------------------------------
+cd <localdir>
+
+git init 
+git add .
+git commit -m 'message'
+
+# now if you want to add it to a remote repo, try this:
+git remote add origin <remote-repo-url>
+git push -u origin master
+
+
+Create remote repo on local drive and clone it into a working directory:
+———————————————————————————————————————————————————————————————————————
+cd /Users/svenberglund/dev/enc3/remoterepos/
+mkdir new_repo
+cd new_repo
+git --bare init 
+
+pwd
+# copy the path
+
+cd ~/dev/enc/<wherever-you-want-it>
+git clone /Users/svenberglund/dev/enc3/remoterepos/new_repo
+
+# ignore folder files created by osx
+echo ".DS_Store" > .gitignore
+git add .gitignore
+git commit
+git push
+
+
+--------- Create new empty branch (e.g. if you for some reason want a totally or partially separated project in the same repo! ) -------------
+
+git checkout --orphan NEWBRANCH
+
+then remove all stuff lingering from previous branches:
+
+git rm -rf .
+
+
+
+
+
+# Inspection and diagnose
+
+
+
+Log all commits in <feature-branch> that does not emanate from <dev>
+----------------------------------------
+git log <feature-branch> ^<dev> --no-merges
+
+
+diff specific file with specific version
+-----------------------------------------
+git diff HEAD~5:models.py models.py
+
+
+
+
+other good commands
+-----------------------------------------------------
+git status -s
+git branch -a
+git remote -v
+
+like pull but will not imply merges:
+git fetch origin
+
+gitk --all
+
+
+
+
 List branches that were merged into master:
 --------------------------------------------
-
 git branch -r --merged
+
+
+
+find branch only present in some submodule/subrepo.
+Run git submodule foreach (any bash command can be appended)
+then invoke branch list and grep to branch to search for:
+example:
+
+$ git submodule foreach 'git branch --all | grep -B 7 amas-4.10-master'
+
+
+
+
+--------- diff or log changes on one file --------------------
+
+use -- befor file paht (note: with trailing blank as well) example:
+
+git diff 44cde6aeaf061e8cd69f2a2e8cc3b6729bd152f5 a6bdf8b767a13df801861a534fbfd25731d77e93 -- Source/com/portwise/core/statistics/tables/AccessHostTable.java
+git log  -- Source/com/portwise/core/statistics/tables/AccessHostTable.java
+
+
+
+
+
+
+
+
+
+
+# Squashing and merging
+
+Squash all local commits!! on feature branch (branch was created from 'dev' branch)
+----------------------------------------------------------------------------
+
+git checkout yourBranch
+git reset $(git merge-base dev yourBranch)
+git add -A
+git commit -m "one commit on yourBranch"
+
+# then the branch will have diverged from upstream obviously (if there is an upstream)
+
+git push origin :yourBranch
+git push
+
+
+
+
+
+
+
+
+# Maintenance and housekeeping
+
+
+
+List all untracked files
+-----------------------------------------
+git ls-files --others --exclude-standard
+
+
+--------------- remove all untracked files form working copy -------
+
+git clean -fd
+(if it doesnt work go to your locla git repo root level and do:
+rm -rf *   (should delete all except the .git stuff, so the git checkout state should still be there)
+git reset --hard HEAD
 
 
 
@@ -37,71 +292,6 @@ git push origin :<my-feature-branch>
 # (4) as a fourth step you might want to check the remaining branches, who 'owns' them i.e. what are the uniques commits on them... See below
 
 
-Log all commits in <feature-branch> that does not emanate from <dev>
-----------------------------------------
-git log <feature-branch> ^<dev> --no-merges
-
-
-
-
-Squash all local commits!! on feature branch (branch was created from 'dev' branch)
-----------------------------------------------------------------------------
-
-git checkout yourBranch
-git reset $(git merge-base dev yourBranch)
-git add -A
-git commit -m "one commit on yourBranch"
-
-# then the branch will have diverged from upstream obviously (if there is an upstream)
-
-git push origin :yourBranch
-git push
-
-
-List all luntracked files
------------------------------------------
-git ls-files --others --exclude-standard
-
-
-
-diff specific file with specific version
------------------------------------------
-git diff HEAD~5:models.py models.py
-
-
-
-
-Create local repo from non empty dir 
-----------------------------------------------------------
-cd <localdir>
-
-git init 
-git add .
-git commit -m 'message'
-
-# now if you want to add it to a remote repo, try this:
-git remote add origin <remote-repo-url>
-git push -u origin master
-
-
-Create remote repo on local drive and clone it into a working directory:
-———————————————————————————————————————————————————————————————————————
-cd /Users/svenberglund/dev/enc3/remoterepos/
-mkdir new_repo
-cd new_repo
-git --bare init 
-
-pwd
-# copy the path
-
-cd ~/dev/enc/<wherever-you-want-it>
-git clone /Users/svenberglund/dev/enc3/remoterepos/new_repo
-
-# ignore folder files created by osx
-echo ".DS_Store" > .gitignore
-git add .gitignore
-git commit
-git push
 
 
 remove local refs to remote branches that are not any longer present at origin
@@ -109,194 +299,14 @@ remove local refs to remote branches that are not any longer present at origin
 git remote prune origin
 
 
-git
---------------------
-installerad on mac via homebrew.. on windows in cygwin
 
-add all (unstaged, modified, deleted) from current palace in workign tree path:
------------------------------------------------------
-git add -A .
 
+# Config
 
-#create new local feature branch example:
------------------------------------------------------
-git checkout -b working_sprint98_deleteUserInAdmin
+## Misc
 
 
-create branch from specific branch 
------------------------------------------------------
-git checkout -b feature-pdfReceipt idc-svt
-you can then do git push and it will be created at origin aswell 
-however you have to do a set-upstream explicitly to connect the two branches (see below)
-
-
---- make sure to track from upstream branch ---
-(the default behaviour is to always push to remote branch with same name but sometimes when you want to pull for the first time you get funny error:
-"you asked me to pull without telling me which branch ...." 
-Can be resolved like this: 
-
-
-the old syntax:
-git branch --set-upstream bucket-4 origin/bucket-4
-The --set-upstream flag is deprecated and will be removed. Consider using --track or --set-upstream-to
-
-from git 1.8git 
-git branch -u origin/bucket bucket
-or just
-git branch -u origin/bucket (if you are already in bucket local branch)
-
-
-
-other good commands
------------------------------------------------------
-git status -s
-git branch -a
-git remote -v
-
-like pull but will not imply merges:
-git fetch origin
-
-gitk --all
-
---- delete remote branch 'origin/myBranch'-------
-
-# first delete it locally if you have one:
-git branch -D myBranch
-
-# then this weird syntax says: take nothing on my side and make it origin/myBranch
-
-git push origin :myBranch
-
-# done!
-
----- workflow to rebase feature branch: ---
-switch to base branch (i.e. ag-sprint-98)
-git checkout ag-sprint-98
-git pull
-git chekout <myfeaturebranch>
-git rebase ag-sprint-98
-
-git config:
-most, like code completion, is made in the bash config
-
-
-find branch only present in some submodule/subrepo.
-Run git submodule foreach (any bash command can be appended)
-then invoke branch list and grep to branch to search for:
-example:
-
-$ git submodule foreach 'git branch --all | grep -B 7 amas-4.10-master'
-
-
-pull certain feature branch only present in some subrepos:
-------------------------------------------------------------
-see:
-    http://trac.technxs.com/amas/wiki/GettingAmasIntoEclipse
-
-...or this cutout:
-
-git clone ssh://src.technxs.com/git/amas.git
-git clone ssh://src.technxs.com/git/amas-all-releases.git
-cd amas
-git checkout your-branch
-git submodule init
-git submodule update
-git submodule foreach git checkout your-branch
-
-
-
--------- workflow to merge -----
--stash feature branch changes not to be committed
--commit your changes to merge
--make a rebase according to above
---if needed to merge, then resolve the conflicts, save and add
-- now if you check (git branch --all) you should be headless
-- continue (git rebase --continue) to apply the merge to your branch
-- git stash pop
-
-
-
-------- workflow to push ---------
-
-Rebase working branch from sprint branch according to above and resolve all merges.
-then push the changes directly from working branch to sprint branch by:
-
-git push origin <working branch name>:<sprint branch name>
-
-commit comment, example:
-ag:#237 - bla bla bla
-
-
-good stuff, see changed files between committ and previous:
-$ git diff <committ-id> <committ-id>~1 --name-only
-
-
-------- workflow to revert --------
-
-TODO:
-
---------------- remove all untracked files form working copy -------
-
-git clean -fd
-(if it doesnt work go to your locla git repo root level and do:
-rm -rf *   (should delete all except the .git stuff, so the git checkout state should still be there)
-git reset --hard HEAD
-
-
------------- Delete and retrack -------
-DELETE and RETRACK local branch, ex develop:
-
-$ git branch -D develop
-$ git pull
-$ git checkout -t origin/develop
-
-
-------------------------------- Unstage added files -------------------------------
--------------- remove file from version control without removing it locally -------
-git rm --cached <filename>
-
-ex: all files in Debug folder
-git rm --cached **/Debug/*
-ex: all .cache files
-git rm --cached *.cache
-
-
-
-
----------- set tracking of local branch that does not track properly from origin:-----
-
-from git 1.8:
- git branch -u upstream/foo foo
-old syntax:
- git branch --set-upstream amas-4.9-master origin/amas-4.9-master
-
-
-
-
---------- diff or log changes on one file --------------------
-
-use -- befor file paht (note: with trailing blank as well) example:
-
-git diff 44cde6aeaf061e8cd69f2a2e8cc3b6729bd152f5 a6bdf8b767a13df801861a534fbfd25731d77e93 -- Source/com/portwise/core/statistics/tables/AccessHostTable.java
-git log  -- Source/com/portwise/core/statistics/tables/AccessHostTable.java
-
-
-------------  create patch from latest commmit (e.g. for mirgrating to other repo) ------
-
-git show HEAD > 6010_core-controller.patch
-
-
-
-
---------- Create new empty branch (totally separated project in the same repo! ) -------------
-
-git checkout --orphan NEWBRANCH
-
-then remove all stuff lingering from previous branches:
-
-git rm -rf .
-
-
+### Windows
 
 --------  setup mergetool on cygwin ---------------------
 
@@ -310,9 +320,15 @@ git config --global difftool.myp4diff.cmd 'p4merge.exe "$(cygpath -wla $LOCAL)" 
 
 git config --global difftool.prompt false
 
------------------ merging ----------------------
 
-git merge --no-ff release-x.x
-use the --no-commit flag to disable autocommit if you want to do some special tweaks(like some row you don't want to merge)
 
-todo merge --squash (difference with --no-ff )
+
+
+
+
+
+
+
+
+
+
