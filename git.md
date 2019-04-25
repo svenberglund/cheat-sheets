@@ -1,8 +1,20 @@
 
+# Table of Contents
+1. [Basics/Misc](#Basics/Misc)
+1.1 [Branching, merging and commit control](#branching-merging-commit)
+1.2 [Initiation](#Initiation)
+
+2. [Inspection and diagnosing](#inspect-diagnose)
+3. [Squashing and merging](#squash-merge)
+4. [Maintenance and housekeeping](#maintain-hosekeep)
+5. [Configuration](#config)
+
+
+
 # Basics/Misc
 
 
-## Branching, merging and commit control
+## Branching, merging and commit control<a name="branching-merging-commit" /> 
 
 
 ### Create new local feature branch (example):
@@ -176,7 +188,7 @@ git rm -rf .
 
 
 
-# Inspection and diagnosing
+# Inspection and diagnosing<a name="inspect-diagnose" />
 
 
 
@@ -245,7 +257,7 @@ git submodule foreach 'git branch --all | grep -B 7 needle-branch'
 
 
 
-# Squashing and merging
+# Squashing and merging<a name="squash-merge" />
 
 ## Squash all local commits - on feature branch (a branch that was created from 'dev' branch)
 
@@ -278,7 +290,7 @@ TODO: Write explaination and example with merge `--squash` (difference with `--n
 
 
 
-# Maintenance and housekeeping
+# Maintenance and housekeeping<a name="maintain-hosekeep" />
 
 
 ## List all untracked files
