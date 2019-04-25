@@ -25,6 +25,8 @@ however you have to do a set-upstream explicitly to connect the two branches (se
 
 (the default behaviour is to always push to remote branch with same name but then when you want to pull for the first time you normally get this error:
 > "you asked me to pull without telling me which branch ...." 
+
+
 Can be resolved like this: 
 
 
