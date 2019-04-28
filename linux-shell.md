@@ -190,3 +190,21 @@ chmod -R 755 /opt/lampp/htdocs
 ```
 sudo lsblk -o name,mountpoint,label,size,uuid
 ```
+
+## Monitoring cpu temperature 
+Done by the following work flow:
+
+(1) first running 
+```
+sudo sensors-detect
+```
+... then follow the instrucitons in the output.
+
+
+(2) Monitoring programs won't work until the needed modules are
+loaded. You may want to run `service kmod start`
+to load them.
+
+
+(3)run `sensors`
+
