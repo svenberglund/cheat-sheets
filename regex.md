@@ -13,7 +13,7 @@ Javascript Regex to match alphanumeric charcters, hyphen and dash.
 This regex should probably do the job of matching such a string:
 ```
 var regex = new RegExp(/^[\w\-/]+$/);
-`
+```
 
 Comments: Anchor the start and end via `^` and `$` respectively.
 End the expression with `+` to indicate one or more occurances, if a zero lenght match is also ok use `*`.
