@@ -36,7 +36,7 @@ function reduceToWhiteList(inputString) {
 Comments about the above:
 
 `\w` is the same as `[A-Za-z0-9_]` (in javascript, not necessarily in other languages)\
-`-` should be ascaped as `\-` so that the engine can distinguish it from "interval hyphen" as in `A-Z`.
+`-` should be escaped as `\-` so that the engine can distinguish it from "interval hyphen" as in `A-Z`.
 
 
 
