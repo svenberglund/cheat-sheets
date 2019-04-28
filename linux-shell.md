@@ -4,8 +4,8 @@
 2. [grep](#grep)
 3. [scp](#scp)
 4. [ssh](#ssh)
-5. [Misc file manipulations](msic-file-manip)
-6. [System resources and diagnosing](systme-diagnose)
+5. [Misc file manipulations](#msic-file-manip)
+6. [System resources and diagnosing](#system-diagnose)
 
 
 
