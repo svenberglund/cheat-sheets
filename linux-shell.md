@@ -89,7 +89,7 @@ find . -name '*.js' | xargs grep 'foobar'
 ```
 
 ## Excude
-Exclude a certain file name pattern (webpack) in search for a string (foobar):
+Exclude a certain file name pattern (*webpack*) in search for a string (*foobar*):
 ```
 grep -ril --exclude='*webpack*' 'foobar'
 ```
@@ -99,13 +99,13 @@ grep -ril --exclude='*webpack*' 'foobar'
 # scp 
 
 ## Download
-Bring home file (file) from the server (to newFile on local machine)
+Bring home file ( *file* ) from the server (to *newFile* on local machine)
 ```
 scp server@<ip_of_server>:file newfile
 ```
 
 ## Upload
-To put a file (file) onto the server (as newFile)
+To put a file ( *file* ) onto the server (as *newFile* )
 ```
 scp file server@<ip_of_server>:newFile
 ```
@@ -166,18 +166,18 @@ Set read, write and execute by owner, read and execute by anyone else on the fil
 chmod 755 file.cgi
 ```
 
-Set the permission of file.txt to "read and write by everyone" (-rw-rw-rw-).
+Set the permission of *file.txt* to "read and write by everyone" (-rw-rw-rw-).
 ```
 chmod 666 file.txt
 ```
 
-Set full permissions to owner and only read to others:
+Set full permissions to owner and only read pernission to others:
 
 ```
 chmod 744 file.txt
 ```
 
-On some folder (ex: htdocs) recursively:
+Set permissions on some folder (ex: htdocs) recursively:
 ```
 chmod -R 755 /opt/lampp/htdocs
 ```
