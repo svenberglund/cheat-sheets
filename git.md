@@ -37,7 +37,7 @@ however you have to do a set-upstream explicitly to connect the two branches (se
 
 ### Make sure to track from upstream branch (Set tracking of local branch that does not track properly from origin).
 
-(the default behaviour is to always push to remote branch with same name but then when you want to pull for the first time you normally get this error:
+The default behaviour is to always push to remote branch with same name but then when you want to pull for the first time you normally get this error:
 > "you asked me to pull without telling me which branch ...." 
 
 
@@ -64,7 +64,7 @@ git branch -u origin/bucket (if you are already in bucket-4 local branch)
 ```
 
 
-### Add all (unstaged, modified, deleted) from current place in workign tree path:
+### Add all (unstaged, modified, deleted) from current place in working tree path:
 
 ```
 git add -A .
