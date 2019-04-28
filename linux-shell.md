@@ -1,6 +1,15 @@
 
+# Table of Contents
+1. [vi(m)](#vim)
+2. [grep](#grep)
+3. [scp](#scp)
+4. [ssh](#ssh)
+5. [Misc file manipulations](msic-file-manip)
+6. [System resources and diagnosing](systme-diagnose)
 
-# vi(m):
+
+
+# vi(m) <a name="vim" /> 
 
 ## Enter command mode: 
 
@@ -128,16 +137,7 @@ ssh-keygen
 TODO: write notes on this, extract from pdf cheat sheet
 
 
-
-# Listing and diagnosing
-
-## List all mounted volumes with labels
-```
-sudo lsblk -o name,mountpoint,label,size,uuid
-```
-
-
-# Misc file manipulations
+# Misc file manipulations <a name="msic-file-manip" /> 
 
 ## Automate edits
 
@@ -180,4 +180,13 @@ chmod 744 file.txt
 Set permissions on some folder (ex: htdocs) recursively:
 ```
 chmod -R 755 /opt/lampp/htdocs
+```
+
+
+
+# System resources and diagnosing <a name="system-diagnose" /> 
+
+## List all mounted volumes with labels
+```
+sudo lsblk -o name,mountpoint,label,size,uuid
 ```
