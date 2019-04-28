@@ -7,7 +7,7 @@
 
 # Concepts:
 
-* DIT - Directory information tree
+* *DIT* - Directory information tree
 tree structure of directory like 
 
 ```
@@ -29,23 +29,23 @@ Acme
 * RootDSE is the top level - Acme in the above case.\
   On levels below there may be organisational levels (ou) or entrys.
 
-* Entry
+* *Entry*
 
   Every entry (e.g. person "class" or object) has a unique `DN` and one or more `objectClasses`
 
-* DN (distinguished name)
+* *DN* (distinguished name)
 
   Unique identifier for a entry or organisational unit.
 
-* objectClass
+* *objectClass*
 
   Packaging of a bunch of attributes
 
-* attribute
+* *attribute*
   
   Example: ‘cn’ = ‘common name’, ‘sn’ = surname’, ‘o’ = organization
 
-* schema
+* *schema*
 
   Packaging files where attribute and object classes are contained.
 
@@ -58,14 +58,14 @@ Acme
       1.2 dn: ou=Groups,dc=example,dc=com,dc=au
   ```
 
-* dc
+* *dc*
      Domain component, a search path component, see example below\
      think of a component of a path
 
-* ou
+* *ou*
      Orgainzational unit
 
-* CN 
+* *CN* 
      Common name. - think of an object instance at leaf level
 
      
