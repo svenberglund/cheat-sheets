@@ -411,6 +411,14 @@ See section *Log all commits in &lt;feature-branch> that do not emanate from &lt
 
 # Config
 
+## Merge tool
+
+Set up (your linux box) to use p4merge, meld, kdiff3 or whatever you have installed. Example:
+```
+git config --global merge.tool p4merge
+```
+
+
 ## Misc
 
 
