@@ -191,6 +191,7 @@ The `quit` command can be abbreviated `q`. Alternatively you can use `close`.
 
 
 
+```
 ----------------------------------------------------------------------
 # Misc file manipulations <a name="msic-file-manip" /> 
 ----------------------------------------------------------------------
@@ -232,6 +233,7 @@ Set full permissions to owner and only read pernission to others:
 ```
 chmod 744 file.txt
 ```
+```
 
 Set permissions on some folder (ex: htdocs) recursively:
 ```
@@ -241,6 +243,7 @@ chmod -R 755 /opt/lampp/htdocs
 
 
 
+```
 --------------------------------------------------------------------
 # System resources and diagnosing <a name="system-diagnose" /> 
 --------------------------------------------------------------------
@@ -265,5 +268,5 @@ loaded. You may want to run `service kmod start`
 to load them.
 
 
-(3)run `sensors`
+(3) Run `sensors`
 
