@@ -174,8 +174,7 @@ telnet <server> <port>
 ```
 
 ## Close session:
-Here's the (only) tricky part, how do you close a telnet session?\ 
-
+Here's the (only) tricky part, how do you close a telnet session?\
 First enter telnet command mode by (+ means combine):
 
 ```
