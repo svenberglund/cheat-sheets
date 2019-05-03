@@ -180,7 +180,7 @@ First enter telnet command mode by (+ means combine):
 ```
 Ctrl + ] 
 ```
-...then close the telnet prgram (if that's what you want:
+...then close the telnet prgram (if that's what you want):
 
 ```
 quit
