@@ -219,6 +219,18 @@ git diff 44cde6aeaf061e8cd69f2a2e8cc3b6729bd152f5 a6bdf8b767a13df801861a534fbfd2
 git log  -- <path-to-file>/FileToDiff.java
 ```
 
+## Diff bewtween branches
+
+Diff master branch and myFeature branch
+```
+git diff master..myFeature
+```
+
+Diff current branch with myFeature branch
+```
+git diff myFeature
+```
+
 
 ## List branches that were merged into master:
 
@@ -398,6 +410,14 @@ See section *Log all commits in &lt;feature-branch> that do not emanate from &lt
 
 
 # Config
+
+## Merge tool
+
+Set up (your linux box) to use p4merge, meld, kdiff3 or whatever you have installed. Example:
+```
+git config --global merge.tool p4merge
+```
+
 
 ## Misc
 
