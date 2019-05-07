@@ -288,6 +288,7 @@ git push origin :yourBranch
 git push
 ```
 
+Note, for the sake of having a clean master/dev branch the above is not necessary, instead just do a sqashed merge: `git merge --squash yourBRanch`. The above is done if you want the feature branch itself to have less commits. 
 
 ## Merging
 
