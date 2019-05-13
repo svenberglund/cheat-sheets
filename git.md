@@ -221,14 +221,19 @@ git log  -- <path-to-file>/FileToDiff.java
 
 ## Diff bewtween branches
 
-Diff master branch and myFeature branch
+Diff `master` branch and `myFeature` branch
 ```
 git diff master..myFeature
 ```
 
-Diff current branch with myFeature branch
+Diff current branch with `myFeature` branch
 ```
 git diff myFeature
+```
+
+Diff file `src/config.js` in current branch with same file in `master` branch
+```
+git diff master src/config.js
 ```
 
 
