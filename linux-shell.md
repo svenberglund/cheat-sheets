@@ -4,12 +4,20 @@
 2. [grep](#grep)
 3. [scp](#scp)
 4. [ssh](#ssh)
-5. [Misc file manipulations](#msic-file-manip)
-6. [System resources and diagnosing](#system-diagnose)
+5. [telnet](#telnet)
+6. [Misc file manipulations](#msic-file-manip)
+7. [System resources and diagnosing](#system-diagnose)
+
+
+In this file I collect cheats on my most used console tools under unix like OS. 
+Might spawn new cheet sheats of the sections when they grow large enough (git is in a separate one). For now this is what it is, quite a mixture. 
 
 
 
+---------------------------------------------------------
 # vi(m) <a name="vim" /> 
+---------------------------------------------------------
+
 
 ## Enter command mode: 
 
@@ -27,6 +35,7 @@
 
 
 `i` or `a`
+
 
 ## Search:  
 
@@ -68,8 +77,10 @@ Change each `foo` to `bar`, but ask for confirmation first.
 
 
 
+-------------------------------------------------
 # grep
----------------------
+-------------------------------------------------
+
 
 ## Most important flags
 
@@ -80,10 +91,12 @@ Recursively: `-r`
 List only (not display rows): `-l`
 
 
+
 ## Search recursively from current dir for a string, 
 ```
 grep -r -i 'somethingtosearchfor' ./
 ```
+
 
 ## Exclude 
 ( eg exclude all .svn dirs):
@@ -91,11 +104,13 @@ grep -r -i 'somethingtosearchfor' ./
 grep -r -i 'somethingtosearchfor' ./ *|grep -v "\.svn/*"
 ```
 
+
 ## Pipe find to grep
 Pipe from find into grep to search recursively from current dir for a string in particular file type:
 ```
 find . -name '*.js' | xargs grep 'foobar'
 ```
+
 
 ## Excude
 Exclude a certain file name pattern (*webpack*) in search for a string (*foobar*):
@@ -105,7 +120,10 @@ grep -ril --exclude='*webpack*' 'foobar'
 
 
 
+
+---------------------------------------------------
 # scp 
+---------------------------------------------------
 
 ## Download
 Bring home file ( *file* ) from the server (to *newFile* on local machine)
@@ -125,7 +143,13 @@ Copy file from remote machine home folder to local root folder without name chan
 scp sven@myserver.com:myfile ./
 ```
 
+
+
+
+----------------------------------------
 # ssh 
+----------------------------------------
+
 Run with correct user according to config file under home folder
 
 ## TODO: rsa key generation and ssh key login
@@ -137,7 +161,41 @@ ssh-keygen
 TODO: write notes on this, extract from pdf cheat sheet
 
 
+
+
+
+----------------------------------------------
+# telnet
+----------------------------------------------
+
+## Open session
+```
+telnet <server> <port>
+```
+
+## Close session:
+Here's the (only) tricky part, how do you close a telnet session?\
+First enter telnet command mode by (+ means combine):
+
+```
+Ctrl + ] 
+```
+...then close the telnet prgram (if that's what you want):
+
+```
+quit
+
+```
+The `quit` command can be abbreviated `q`. Alternatively you can use `close`.
+
+
+
+
+```
+----------------------------------------------------------------------
 # Misc file manipulations <a name="msic-file-manip" /> 
+----------------------------------------------------------------------
+
 
 ## Automate edits
 
@@ -158,7 +216,6 @@ find . -name "*.php" -print
 rm -rf myDir
 ```
 
-
 ## chmod
 
 Set read, write and execute by owner, read and execute by anyone else on the file 'file.cgi':
@@ -176,6 +233,7 @@ Set full permissions to owner and only read pernission to others:
 ```
 chmod 744 file.txt
 ```
+```
 
 Set permissions on some folder (ex: htdocs) recursively:
 ```
@@ -184,7 +242,11 @@ chmod -R 755 /opt/lampp/htdocs
 
 
 
+
+```
+--------------------------------------------------------------------
 # System resources and diagnosing <a name="system-diagnose" /> 
+--------------------------------------------------------------------
 
 ## List all mounted volumes with labels
 ```
@@ -206,5 +268,5 @@ loaded. You may want to run `service kmod start`
 to load them.
 
 
-(3)run `sensors`
+(3) Run `sensors`
 
