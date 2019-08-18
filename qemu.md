@@ -83,7 +83,7 @@ loadvm <snapshot-name>
 
 List all snapshots
 ```
-info snapshot
+info snapshots
 ```
 
 Remove a snaphsot
