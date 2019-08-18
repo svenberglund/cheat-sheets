@@ -169,14 +169,17 @@ sudo vim /etc/fstab
 This technique was learned from [this excellent tutorial](http://nts.strzibny.name/how-to-set-up-shared-folders-in-virt-manager/)
 
 
-## Share clipboard
+## virt-manager troubleshoot
 
-TODO...
+# Hanging,...problem starting up virt-manager? 
+Try to restart the libvirt. Depending on your distro, something like:
 
+```
+sudo systemctl stop libvitd
+sudo systemctl status libvirtd
+sudo systemctl start libvirtd
+``` 
 
-
-
-
-
+Another remedy if libvirt or some of the machines are in a bad state and cant recover, can be to startit up "low level" with a qemu script according to above. Just start up and shut down the machine. Worked for me.
 
 
