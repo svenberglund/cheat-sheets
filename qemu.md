@@ -175,8 +175,9 @@ This technique was learned from [this excellent tutorial](http://nts.strzibny.na
 Try to restart the libvirt. Depending on your distro, something like:
 
 ```
-sudo systemctl stop libvitd
+sudo systemctl stop libvirtd
 sudo systemctl status libvirtd
+sudo systemctl enable --now libvirtd
 sudo systemctl start libvirtd
 ``` 
 
