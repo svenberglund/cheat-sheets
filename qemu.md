@@ -61,7 +61,7 @@ kvm 	-hda <my-image-name>.img \
 	-vga virtio \
 	-soundhw all
 ```
-Above we assign 7.5 GB RAM and 3 qemu cores (they are virtual and not statically mapped to host cores), hell yeah!. The `-vga virtio` parameter will enable different screen resolutions (at least this conf "works for me" I have not researched the alternatives very well though).
+Above we assign 7.5 GB RAM and 3 qemu cores (they are virtual and not statically mapped to host cores), hell yeah!. The `-vga virtio` parameter will enable different screen resolutions (at least this conf _works for me_ I have not researched the alternatives very well though).
 
 
 ## Enter/exit monitor console
