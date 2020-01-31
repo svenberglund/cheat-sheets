@@ -271,3 +271,32 @@ to load them.
 
 (3) Run `sensors`
 
+
+## File system info
+(Mount points, file system types etc)
+
+```
+df -Th
+```
+## Process info
+
+```
+Top
+```
+
+## Network usage
+There are tons of nice tools available to install, `netstat` is usually installed default.
+
+Example:
+```
+sudo netstat | grep tcp
+```
+
+
+
+
+
+
+
+
+
