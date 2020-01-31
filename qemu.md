@@ -32,7 +32,7 @@ Note: if you want to run nested virtualization (In my case it was an emulator in
 qemu-img create -f qcow2 <my-image-name>.img 40G
 ```
 Example allocates 40 GB to your image. Replace `<my-image-name>` with a name according to your preference.
-`qcow2` is the image file system, there are other options that may be more efficient in some cases but this choice "works for me" while it enables to save execution state snapshots.
+`qcow2` is the image file system, there are other options that may be more efficient in some cases but this choice _works for me_ while it enables to save execution state snapshots.
 
 ### Installing the machine with KVM
 
