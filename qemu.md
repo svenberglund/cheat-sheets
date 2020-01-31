@@ -20,6 +20,9 @@ sudo apt update
 sudo apt install qemu qemu-kvm
 
 ```
+Note: if you want to run nested virtualization (In my case it was an emulator inside a virtual dev environment) you should _not_ build the outer virtualization on `qemu`. Use the tool `kvm-ok` inside your outer virtualized system (comes with `kvm` installation) to check feasibility. Aso useful is to run: `cat /proc/cpuinfo`.
+
+
 
 ## Create a machine from ISO
 
@@ -51,13 +54,14 @@ Prepare a shell script (e.g. `start.sh`) for booting up the machine.
 Example:
 ```
 kvm 	-hda <my-image-name>.img \
-	-m 3072 \
+	-m 7500 \
+	-smp 3\
 	-net nic \
 	-net user \
 	-vga virtio \
 	-soundhw all
 ```
-The `-vga virtio` parameter will enable different screen resolutions (at least this conf "works for me" I have not researched the alternatives very well though).
+Above we assign 7.5 GB RAM and 3 qemu cores (they are virtual and not statically mapped to host cores), hell yeah!. The `-vga virtio` parameter will enable different screen resolutions (at least this conf "works for me" I have not researched the alternatives very well though).
 
 
 ## Enter/exit monitor console
