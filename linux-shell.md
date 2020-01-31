@@ -189,9 +189,6 @@ quit
 The `quit` command can be abbreviated `q`. Alternatively you can use `close`.
 
 
-
-
-```
 ----------------------------------------------------------------------
 # Misc file manipulations <a name="msic-file-manip" /> 
 ----------------------------------------------------------------------
@@ -233,17 +230,13 @@ Set full permissions to owner and only read pernission to others:
 ```
 chmod 744 file.txt
 ```
-```
 
-Set permissions on some folder (ex: htdocs) recursively:
+Set permissions on some folder (ex: _htdocs_, just an example, I promise) recursively:
+
 ```
 chmod -R 755 /opt/lampp/htdocs
 ```
 
-
-
-
-```
 --------------------------------------------------------------------
 # System resources and diagnosing <a name="system-diagnose" /> 
 --------------------------------------------------------------------
@@ -251,6 +244,14 @@ chmod -R 755 /opt/lampp/htdocs
 ## List all mounted volumes with labels
 ```
 sudo lsblk -o name,mountpoint,label,size,uuid
+```
+
+## Processor and memory info
+(At least on Debian based distros)
+
+```
+cat /proc/cpuinfo
+cat /proc/meminfo
 ```
 
 ## Monitoring cpu temperature 
